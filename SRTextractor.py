@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import ffmpy, os, fileinput, codecs
+import ffmpy, os
+from os import path
 from shutil import copyfile
 
 # GLOBAL CONSTANTS
@@ -10,13 +11,19 @@ ADD_TO_NAME = ".en.srt"   # after .mp4 is removed, add this to filename
 
 # Implements FFMPEG arguments on $targetFile
 def run_ffmpeg_on_file(file):
+
+    fileNEW = newName(file)
+
+    if os.path.isfile(fileNEW):
+        os.remove(fileNEW)
+
     ff = ffmpy.FFmpeg(                      # calls FFMPEG from ffmpy module
-            inputs = { file : None},            # call original INPUT $file
-            outputs = { newName(file) : ARGS}    # adjust name and implement arguments/options
+            inputs = { file : None},        # call original INPUT $file
+            outputs = { fileNEW : ARGS}     # adjust name and implement arguments/options
     )
     ff.run()                                # creates OUTPUT file
 
-# Splice .mp4 out of name during new file creation
+# Splice .mp4 out of name during new file creatio   n
 def newName(file):
     cutName = file[:-4]       # make a new string based on .mp4 being cut
     return cutName+ADD_TO_NAME    # add whatever the User wants to filename
@@ -24,12 +31,15 @@ def newName(file):
 def main():
 
     # run FFMPEG on all files in pwd
-    for file in os.listdir():       # for every file in current directory
+    for file in os.listdir(DIR):       # for every file in current directory
         if file.endswith('mp4'):    # if the file is an .mp4
             run_ffmpeg_on_file(file)         # save the mp4's caption as an .srt.. or whatever other arguments User wants (see top)
 
     #re-align filename with
     file = newName(file)
+
+    #if file.is_dir():
+        #os.remove(file)
 
     myIn = open(file,'r')
     myOut = open(file+"NEW.rtf",'w')
