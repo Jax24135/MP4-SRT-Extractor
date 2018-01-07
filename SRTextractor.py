@@ -25,17 +25,26 @@ def main():
         if file.endswith('mp4'):    # if the file is an .mp4
             extractMe(file)         # save the mp4's caption as an .srt.. or whatever other arguments User wants (see top)
 
+    #print("before change " + file)
+    file = newName(file)
+    #print("post change " + file)
+
+    myIn = open(file,'r')
     myOut = open(file+"NEW.rtf",'w')
 
-    with codecs.open(os.listdir(),"r",encoding="utf-8",errors="ignore"):
+    #with codecs.open(os.listdir(),"r",encoding="utf-8",errors="ignore"):
 
-        for line in file:
-                myOut.write(line)
+    for line in myIn:
+        line.replace('<font size="24">','')
+        #line.replace('</font>' , '' , end='')
+        #line.replace('<font face="Arial">' , '', end='')
+
+        myOut.write(line)
 
 
 
 
-    #myIn.close()
+    myIn.close()
     myOut.close()
 
     #with fileinput.FileInput(file,inplace=True,backup=".bak") as file:
