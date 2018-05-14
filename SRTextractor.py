@@ -1,4 +1,9 @@
 #!/usr/bin/env python
+
+#JonMSG - KungFu adds "<font size>" messages... need to figure out how to rid these from output regEx?
+
+
+
 import ffmpy, os
 #from os import path
 from shutil import copyfile
