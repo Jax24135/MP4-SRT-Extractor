@@ -27,7 +27,7 @@ def run_ffmpeg_on_file(file):
 # Splice .mp4 out of name during new file creation
 def newName(file):
     cutName = file[:-4]       # make a new string based on .mp4 being cut
-    return cutName+ADD_TO_NAME    # add whatever the User wants to filename
+    return cutName + ADD_TO_NAME    # add whatever the User wants to filename
 
 def main():
 
@@ -61,6 +61,6 @@ def main():
     copyfile(file+"NEW.rtf",file)
     os.remove(file+"NEW.rtf")
 
-    print("finished w/o errors")
+    print('\n'+"finished w/o errors")
 
 main()
