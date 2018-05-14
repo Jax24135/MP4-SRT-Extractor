@@ -24,16 +24,16 @@ def run_ffmpeg_on_file(file):
     )
     ff.run()                                # creates OUTPUT file
 
-# Splice .mp4 out of name during new file creatio   n
+# Splice .mp4 out of name during new file creation
 def newName(file):
     cutName = file[:-4]       # make a new string based on .mp4 being cut
     return cutName+ADD_TO_NAME    # add whatever the User wants to filename
 
 def main():
 
-    # run FFMPEG on all files in pwd
-    for file in os.listdir(DIR):       # for every file in current directory
-        if file.endswith('mp4'):    # if the file is an .mp4
+    # run FFMPEG on all files in pwd - IF file ends in ".mp4"
+    for file in os.listdir(DIR):             # for every file in current directory
+        if file.endswith('mp4'):             # if the file is an .mp4
             run_ffmpeg_on_file(file)         # save the mp4's caption as an .srt.. or whatever other arguments User wants (see top)
 
     #re-align filename with
