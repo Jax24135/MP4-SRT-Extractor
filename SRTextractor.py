@@ -14,7 +14,18 @@ CHAR_CUT = -4             # how many character to cut off (i.e. ".mp4" is -4)
 ARGS = ['-map','0:s:0','-loglevel','panic' ]  # arguments/options to implement when creating new OUTPUT file
 ADD_TO_NAME = ".en.srt"   # after .mp4 is removed, add $this to filename
 
-HTML_TAGS = ['<font size="24">','\r<font size="24">','</font>','</font>\r','<font face="Arial">','<font face="Arial">\r', 'CAPTIONING MADE POSSIBLE BY','    WARNER BROS.','CAPTIONED BY THE NATIONAL','CAPTIONING INSTITUTE','--www.ncicap.org--']
+# remove these tags from each line in SRT file
+HTML_TAGS = ['<font size="24">', \
+             '\r<font size="24">', \
+             '</font>', \
+             '</font>\r', \
+             '<font face="Arial">', \
+             '<font face="Arial">\r', \
+             'CAPTIONING MADE POSSIBLE BY', \
+             '    WARNER BROS.', \
+             'CAPTIONED BY THE NATIONAL', \
+             'CAPTIONING INSTITUTE', \
+             '--www.ncicap.org--']
 
 def main():
 
